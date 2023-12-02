@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+"""
+Advent of Code Day 2 Star 1
+
+What is the sum of the IDs of possible games?
+"""
+
 import re
 
 # 12 red cubes, 13 green cubes, and 14 blue cubes
