@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Advent of Code star 2
+Advent of Code Day 2 Star 2
 
 What is sum of the power of the minimum number of cubes that must have been present per game?
 """
