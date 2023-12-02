@@ -28,6 +28,8 @@ def main():
             game_id = int(re.match(r"Game (\d+)", game).group(1))
             sum_game_ids += game_id
 
+    print(sum_game_ids)
+
 
 if __name__ == "__main__":
     main()
