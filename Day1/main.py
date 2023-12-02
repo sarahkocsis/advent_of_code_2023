@@ -9,7 +9,28 @@ def main():
     with open(input_path, 'r') as fil:
         inputs = [line.rstrip('\n') for line in fil]
 
-    digit_list = [re.findall("\d", x) for x in inputs]
+    corrected_data = []
+
+    for x in inputs:
+        # Compensate for edge cases
+        x = x.replace("twone", "21")
+        x = x.replace("oneight", "18")
+        x = x.replace("eightwo", "82")
+
+        # Standard replacement after edge cases
+        x = x.replace("one", "1")
+        x = x.replace("two", "2")
+        x = x.replace("three", "3")
+        x = x.replace("four", "4")
+        x = x.replace("five", "5")
+        x = x.replace("six", "6")
+        x = x.replace("seven", "7")
+        x = x.replace("eight", "8")
+        x = x.replace("nine", "9")
+
+        corrected_data.append(x)
+
+    digit_list = [re.findall("\d", x) for x in corrected_data]
 
     chosen_digits = [int(x[0]+x[-1]) for x in digit_list]
 
