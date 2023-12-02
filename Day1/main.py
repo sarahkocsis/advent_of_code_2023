@@ -4,7 +4,7 @@ import re
 
 def main():
     # Read in input
-    input_path = "/Users/Sarah/Library/CloudStorage/OneDrive-Personal/Documents/Advent_of_Code_2023/Day1/input.txt"
+    input_path = "input.txt"
 
     with open(input_path, 'r') as fil:
         inputs = [line.rstrip('\n') for line in fil]
