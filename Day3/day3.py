@@ -21,7 +21,6 @@ def part1():
         for match in data:
             x=match.span()[0]
             while x<match.span()[1]:
-                print(y, x)
                 if schematic[y][x].isdigit():
                     if 0<=x-1<len(schematic[y]) and 0<=y-1<len(schematic[y]) and not schematic[y-1][x-1].isalnum() and schematic[y-1][x-1] != ".":
                         total += int(match.group())
@@ -144,5 +143,5 @@ def part2():
 
 
 if __name__ == "__main__":
-    # part1()
+    part1()
     part2()
