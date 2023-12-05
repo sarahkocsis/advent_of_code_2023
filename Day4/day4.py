@@ -28,7 +28,8 @@ def part1():
         curr_received_nums = [int(x) for x in received_nums_str.split()]
 
         # Calculate score of card
-        cards_score += calc_card_score(curr_winning_nums, curr_received_nums)
+        current_score, _ = calc_card_score(curr_winning_nums, curr_received_nums)
+        cards_score += current_score
 
     print(cards_score)
 
@@ -40,18 +41,16 @@ def part2():
     with open("input.txt", 'r') as cards_file:
         cards = cards_file.read().splitlines()
 
-    # card_copies = {}
-    # card_copies[1] = 1  # The first card has one copy
-    copies_count = 1
-    cards_to_investigate = [1]
+    card_copies = {}
+    # All cards have one copy to start
+    for i in range(1, len(cards)+1):
+        card_copies[i] = 1
 
-    while cards_to_investigate:
-        # Sort to make sure cards are in ascending order
-        cards_to_investigate = sorted(cards_to_investigate)
-        curr_card_num = cards_to_investigate.pop(0)
-        print(curr_card_num)
-        # Remove the Card # part
-        card = cards[curr_card_num][10:]
+    curr_card_num = 1
+
+    for card in cards:
+        # Remove the Card # part (length depends on input)
+        card = card[10:]
 
         # Split on | to determine winning numbers and card numbers. There is exactly one | per line
         winning_nums_str, received_nums_str = card.split("|")
@@ -61,14 +60,17 @@ def part2():
         # Calculate number of matches on card
         _, num_matches = calc_card_score(curr_winning_nums, curr_received_nums)
 
-        # Add the next n cards based on num_matches to the investigation list
-        new_cards_to_add = list(range(curr_card_num+1,curr_card_num+1+num_matches))
-        copies_count = copies_count + len(new_cards_to_add)
-        cards_to_investigate = cards_to_investigate + new_cards_to_add
+        # Add copies to the copies dictionary
+        for _ in range(card_copies[curr_card_num]):
+            for i in range(curr_card_num + 1, curr_card_num + num_matches + 1):
+                card_copies[i] += 1
 
-    print(copies_count)
+        curr_card_num += 1
+
+    total = sum(card_copies.values())
+    print(total)
 
 
 if __name__ == "__main__":
-    # part1()
+    part1()
     part2()
